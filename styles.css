@@ -43,7 +43,7 @@ body {
 
 /* ---------- HERO ---------- */
 .hero {
-  background: linear-gradient(rgba(15,20,25,0.45), rgba(15,20,25,0.45)), url('assets/banner.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(15,20,25,0.62), rgba(15,20,25,0.62)), url('assets/banner.jpg') center 30%/cover no-repeat;
   color: #fff;
   padding-block: clamp(3.5rem, 10vw, 7rem);
   text-align: center;
@@ -93,7 +93,12 @@ body {
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.btn-primary { background: #fff; color: var(--violet); }
+.btn-primary {
+  background: rgba(255,255,255,0.92);
+  color: var(--violet);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
 .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.95); }
 .btn-ghost:hover { background: rgba(255,255,255,0.12); }
@@ -143,18 +148,34 @@ section.alt { background: var(--mist); }
   margin-bottom: 0.5rem;
 }
 .badges {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow: hidden;
   padding-block: 0.5rem;
 }
+.badges-track { display: flex; width: max-content; }
+.badges-set {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 1rem;
+  padding-right: 1rem;
+}
 .badge-item {
-  scroll-snap-align: start;
   flex: 0 0 120px;
   text-align: center;
   font-size: 0.75rem;
   color: var(--ink-soft);
+}
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .badges-track { animation: scroll-left 18s linear infinite; }
+  .badges:hover .badges-track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .badges-track { width: auto; }
+  .badges-set { flex-wrap: wrap; padding-right: 0; }
+  .badges-set[aria-hidden="true"] { display: none; }
 }
 .badge-item img { width: 120px; height: 120px; object-fit: contain; }
 
@@ -227,5 +248,4 @@ footer {
   .about { grid-template-columns: 1fr auto; align-items: start; }
   .about-text { grid-column: 1; grid-row: 1; }
   .about .portrait { grid-column: 2; grid-row: 1; }
-  .badges { flex-wrap: wrap; overflow-x: visible; }
 }
