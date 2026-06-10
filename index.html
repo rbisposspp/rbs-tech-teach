@@ -114,23 +114,23 @@
       <h2 class="section-title">Quer tirar uma dúvida antes?</h2>
       <p class="prose">Me mande uma mensagem e eu respondo pelo e-mail que você informar.</p>
 
-      <!-- PLACEHOLDER — Claude Code conecta a /api/contact na Fase 2.
-           Sem <form> action por enquanto; será controlado por JS. -->
-      <div class="contact-form">
+      <form class="contact-form" method="POST">
         <div>
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" autocomplete="name">
+          <input type="text" id="nome" name="nome" autocomplete="name" required>
         </div>
         <div>
           <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" autocomplete="email">
+          <input type="email" id="email" name="email" autocomplete="email" required>
         </div>
         <div>
           <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+          <textarea id="mensagem" name="mensagem" rows="4" maxlength="2000" required></textarea>
         </div>
-        <button type="button" class="btn btn-submit">Enviar mensagem</button>
-      </div>
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+        <button type="submit" class="btn btn-submit">Enviar mensagem</button>
+        <p class="form-status" role="status" hidden></p>
+      </form>
     </div>
   </section>
 
@@ -143,6 +143,47 @@
       <!-- CLAUDE CODE: adicionar link de e-mail, WhatsApp e ano dinâmico -->
     </div>
   </footer>
+
+  <script>
+    const form = document.querySelector('.contact-form');
+    const button = form.querySelector('.btn-submit');
+    const status = form.querySelector('.form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const original = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Enviando…';
+      status.hidden = true;
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome: form.nome.value,
+            email: form.email.value,
+            mensagem: form.mensagem.value,
+            website: form.website.value,
+          }),
+        });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        status.textContent = 'Mensagem enviada! Responderei em breve.';
+        status.classList.remove('is-error');
+        status.classList.add('is-ok');
+        form.reset();
+      } catch {
+        status.textContent = 'Erro ao enviar. Tente novamente ou escreva para rbs@rbs.eng.br.';
+        status.classList.remove('is-ok');
+        status.classList.add('is-error');
+      } finally {
+        status.hidden = false;
+        button.disabled = false;
+        button.textContent = original;
+      }
+    });
+  </script>
 
 </body>
 </html>
