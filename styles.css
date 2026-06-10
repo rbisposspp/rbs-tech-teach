@@ -9,7 +9,8 @@
   --mist:       #f4f6f9;   /* fundo de seção alternada */
   --teal:       #1f9ea8;   /* acento — azul-petróleo do banner */
   --teal-text:  #147a82;   /* variante escura do teal para texto pequeno (4.5:1 em --paper e --mist) */
-  --violet:     #6b4ed8;   /* acento — roxo do banner */
+  --violet:     #6b4ed8;   /* acento — roxo do banner; cor de ação (botões) */
+  --violet-deep: #5a3fc6;  /* hover dos botões violeta */
   --line:       #e2e6ec;   /* divisórias */
 
   --grad: linear-gradient(120deg, #2f7d5a 0%, #1f9ea8 38%, #3a5bd0 68%, #7b3fd4 100%);
@@ -18,7 +19,7 @@
   --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --maxw: 920px;
-  --gap:  clamp(2.5rem, 6vw, 5rem);
+  --gap:  clamp(3rem, 7vw, 6rem);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,11 +56,23 @@ body {
 }
 .hero h1 {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2rem, 6vw, 3.4rem);
-  line-height: 1.12;
+  font-weight: 500;
+  font-size: clamp(2.1rem, 6vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
   max-width: 16ch;
   margin-inline: auto;
+}
+.hero h1 em {
+  font-style: normal;
+  background: var(--grad);
+  background-size: 100% 0.38em;
+  background-position: 0 92%;
+  background-repeat: no-repeat;
+  padding-inline: 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 .hero p {
   margin-top: 1.25rem;
@@ -89,10 +102,12 @@ body {
 /* ---------- SEÇÕES ---------- */
 section { padding-block: var(--gap); }
 section.alt { background: var(--mist); }
+#agendar { padding-block: calc(var(--gap) * 1.35); }
+#aulas { padding-block: calc(var(--gap) * 0.85); }
 
 .eyebrow {
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--teal-text);
   font-weight: 700;
@@ -100,9 +115,11 @@ section.alt { background: var(--mist); }
 }
 .section-title {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.6rem, 4vw, 2.3rem);
-  line-height: 1.2;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
   margin-bottom: 1rem;
 }
 .prose { color: var(--ink-soft); max-width: 60ch; }
@@ -154,13 +171,13 @@ section.alt { background: var(--mist); }
   left: 0; top: 0.55em;
   width: 0.6rem; height: 0.6rem;
   border-radius: 50%;
-  background: var(--grad);
+  background: var(--teal);
 }
 
 /* ---------- AGENDAMENTO ---------- */
 .schedule-cta { margin-top: 1.5rem; }
-.btn-schedule { background: var(--grad); color: #fff; margin-top: 1rem; }
-.btn-schedule:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.btn-schedule { background: var(--violet); color: #fff; margin-top: 1rem; }
+.btn-schedule:hover { background: var(--violet-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
 .schedule-note {
   margin-top: 0.75rem;
   font-size: 0.85rem;
@@ -181,7 +198,8 @@ section.alt { background: var(--mist); }
 }
 .contact-form input:focus,
 .contact-form textarea:focus { outline: 2px solid var(--teal); border-color: transparent; }
-.contact-form .btn-submit { background: var(--grad); color: #fff; justify-self: start; }
+.contact-form .btn-submit { background: var(--violet); color: #fff; justify-self: start; }
+.contact-form .btn-submit:hover { background: var(--violet-deep); }
 .contact-form .btn-submit:disabled { opacity: 0.7; cursor: wait; }
 .form-status { font-size: 0.9rem; font-weight: 600; }
 .form-status.is-ok { color: var(--teal-text); }
