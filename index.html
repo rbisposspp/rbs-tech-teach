@@ -14,7 +14,7 @@
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%236b4ed8'/><text x='32' y='45' font-family='sans-serif' font-size='38' font-weight='700' text-anchor='middle' fill='white'>R</text></svg>">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -35,20 +35,49 @@
     </div>
   </header>
 
+  <div class="tz" aria-hidden="true">
+    <div class="tz-track">
+      <div class="tz-set">
+        <span class="tz-item"><b>São Paulo</b> <span data-tz="America/Sao_Paulo">--:--</span></span>
+        <span class="tz-item"><b>London</b> <span data-tz="Europe/London">--:--</span></span>
+        <span class="tz-item"><b>New York</b> <span data-tz="America/New_York">--:--</span></span>
+        <span class="tz-item"><b>Lisboa</b> <span data-tz="Europe/Lisbon">--:--</span></span>
+        <span class="tz-item"><b>Tóquio</b> <span data-tz="Asia/Tokyo">--:--</span></span>
+        <span class="tz-item"><b>Dublin</b> <span data-tz="Europe/Dublin">--:--</span></span>
+      </div>
+      <div class="tz-set">
+        <span class="tz-item"><b>São Paulo</b> <span data-tz="America/Sao_Paulo">--:--</span></span>
+        <span class="tz-item"><b>London</b> <span data-tz="Europe/London">--:--</span></span>
+        <span class="tz-item"><b>New York</b> <span data-tz="America/New_York">--:--</span></span>
+        <span class="tz-item"><b>Lisboa</b> <span data-tz="Europe/Lisbon">--:--</span></span>
+        <span class="tz-item"><b>Tóquio</b> <span data-tz="Asia/Tokyo">--:--</span></span>
+        <span class="tz-item"><b>Dublin</b> <span data-tz="Europe/Dublin">--:--</span></span>
+      </div>
+    </div>
+  </div>
+
   <main>
 
   <!-- ============ SOBRE ============ -->
   <section id="sobre">
     <div class="wrap">
       <div class="about">
-        <img class="portrait" src="assets/ton.jpg" alt="Rodrigo Sias, professor de inglês" width="780" height="1040" loading="lazy">
+        <div class="call-frame">
+          <div class="call-top" aria-hidden="true"><i></i><i></i><i></i><span>Aula ao vivo · Zoom</span></div>
+          <img class="portrait" src="assets/ton.jpg" alt="Rodrigo Sias, professor de inglês" width="780" height="1040" loading="lazy">
+          <div class="call-bar" aria-hidden="true">
+            <span class="call-dot"></span>
+            <span class="call-name">Rodrigo · online</span>
+            <span class="call-cap">tailor-made = sob medida</span>
+          </div>
+        </div>
         <div class="about-text">
-          <p class="eyebrow">Sobre o professor</p>
+          <p class="eyebrow">Sobre o professor <span class="eyebrow-en">· About</span></p>
           <h2 class="section-title">Quem vai te ensinar</h2>
           <p class="prose">
             Sou Rodrigo, professor de inglês com aulas individuais e online para adultos.
             Cada aula é planejada para o seu objetivo — trabalho, viagens ou conversação —
-            com materiais interativos criados especialmente para você.
+            com materiais interativos <span class="tr">criados especialmente para você</span>.
           </p>
           <p class="badges-label">Google AI Educator Series</p>
           <div class="badges">
@@ -107,6 +136,7 @@
               </div>
             </div>
           </div>
+          <p class="badges-note">Formação Google AI Educator Series — as aulas e os materiais são planejados com IA de verdade.</p>
         </div>
       </div>
     </div>
@@ -115,21 +145,36 @@
   <!-- ============ COMO FUNCIONAM AS AULAS ============ -->
   <section id="aulas" class="alt">
     <div class="wrap">
-      <p class="eyebrow">Como funcionam</p>
-      <h2 class="section-title">Aulas pensadas para você</h2>
-      <ul class="features">
-        <li>Aulas individuais, 100% online, via Zoom.</li>
-        <li>Conteúdo personalizado para o seu nível e objetivo.</li>
-        <li>Materiais interativos e atividades práticas em cada aula.</li>
-        <li>Horários flexíveis, combinados diretamente com o professor.</li>
-      </ul>
+      <div class="method">
+        <div>
+          <p class="eyebrow">Como funcionam <span class="eyebrow-en">· The method</span></p>
+          <h2 class="section-title">Aulas pensadas para você</h2>
+          <ul class="features">
+            <li><span class="feature-n">01</span>Aulas individuais, 100% online, via Zoom.</li>
+            <li><span class="feature-n">02</span>Conteúdo personalizado para o seu nível e objetivo.</li>
+            <li><span class="feature-n">03</span>Materiais interativos e atividades práticas em cada aula.</li>
+            <li><span class="feature-n">04</span>Horários flexíveis, combinados diretamente com o professor.</li>
+          </ul>
+        </div>
+        <div class="chat" aria-hidden="true">
+          <p class="chat-bub chat-pt"><span class="chat-who">Você · PT</span>Como eu digo “sob medida” em inglês?</p>
+          <p class="chat-bub chat-en"><span class="chat-who">Rodrigo · EN</span><span class="chat-type">Tailor-made — that's the word!</span></p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ============ AGENDAMENTO ============ -->
   <section id="agendar">
+    <svg class="map-arcs" viewBox="0 0 600 170" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 110 130 Q 240 30 360 96" fill="none" stroke="rgba(43,182,194,0.45)" stroke-width="1" stroke-dasharray="4 4"/>
+      <path d="M 360 96 Q 450 40 520 70" fill="none" stroke="rgba(123,94,232,0.5)" stroke-width="1" stroke-dasharray="4 4"/>
+      <circle cx="110" cy="130" r="3" fill="#2bb6c2"/><text x="102" y="148" class="map-city">GRU</text>
+      <circle cx="360" cy="96" r="3" fill="#7b5ee8"/><text x="352" y="114" class="map-city">LHR</text>
+      <circle cx="520" cy="70" r="3" fill="#2bb6c2"/><text x="512" y="88" class="map-city">JFK</text>
+    </svg>
     <div class="wrap">
-      <p class="eyebrow">Agende</p>
+      <p class="eyebrow">Agende <span class="eyebrow-en">· Book a class</span></p>
       <h2 class="section-title">Reserve sua aula experimental</h2>
       <div class="schedule-cta">
         <p class="prose">Escolha um horário disponível. A reserva é confirmada na hora e vai direto para a agenda.</p>
@@ -144,8 +189,8 @@
   <!-- ============ CONTATO ============ -->
   <section id="contato" class="alt">
     <div class="wrap">
-      <p class="eyebrow">Contato</p>
-      <h2 class="section-title">Quer tirar uma dúvida antes?</h2>
+      <p class="eyebrow">Contato <span class="eyebrow-en">· Get in touch</span></p>
+      <h2 class="section-title">Quer tirar uma <span class="tr">dúvida</span> antes?</h2>
       <p class="prose">Me mande uma mensagem e eu respondo pelo e-mail que você informar.</p>
 
       <form class="contact-form" method="POST">
@@ -178,6 +223,35 @@
     </div>
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+
+  <script>
+    const clocks = document.querySelectorAll('[data-tz]');
+    const tick = () => {
+      const now = new Date();
+      clocks.forEach((el) => {
+        el.textContent = new Intl.DateTimeFormat('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: el.dataset.tz,
+        }).format(now);
+      });
+    };
+    tick();
+    setInterval(tick, 30000);
+
+    const chat = document.querySelector('.chat');
+    if (chat && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          chat.classList.add('play');
+          io.disconnect();
+        }
+      }, { threshold: 0.4 });
+      io.observe(chat);
+    } else if (chat) {
+      chat.classList.add('play');
+    }
+  </script>
 
   <script>
     const form = document.querySelector('.contact-form');

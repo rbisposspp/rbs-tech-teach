@@ -4,6 +4,7 @@
    =================================================================== */
 :root {
   --ink:        #0f1419;   /* texto principal, quase preto azulado */
+  --ink-2:      #141a2e;   /* variante violeta do ink — faixa de fusos */
   --ink-soft:   #3d4654;   /* texto secundário */
   --paper:      #ffffff;   /* fundo */
   --mist:       #f4f6f9;   /* fundo de seção alternada */
@@ -15,6 +16,7 @@
 
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
 
   --maxw: 920px;
   --gap:  clamp(3rem, 7vw, 6rem);
@@ -67,6 +69,40 @@ body {
   margin-inline: auto;
 }
 
+/* ---------- FAIXA DE FUSOS ---------- */
+.tz {
+  background: var(--ink-2);
+  border-block: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+.tz-track { display: flex; width: max-content; }
+.tz-set { display: flex; flex: 0 0 auto; }
+.tz-item {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.78);
+  white-space: nowrap;
+  padding-block: 0.6rem;
+  padding-right: 1.4rem;
+}
+.tz-item b { color: #fff; font-weight: 500; text-transform: uppercase; }
+.tz-item::before {
+  content: '●';
+  color: var(--teal);
+  font-size: 0.5rem;
+  vertical-align: 0.12em;
+  margin-right: 1.4rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tz-track { animation: scroll-left 32s linear infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tz-track { width: auto; justify-content: center; }
+  .tz-set { flex-wrap: wrap; justify-content: center; }
+  .tz-set:last-child { display: none; }
+}
+
 /* ---------- BOTÕES ---------- */
 .btn {
   display: inline-block;
@@ -97,12 +133,19 @@ section.alt { background: var(--mist); }
 #aulas { padding-block: calc(var(--gap) * 0.85); }
 
 .eyebrow {
+  font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--teal-text);
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 0.75rem;
+}
+.eyebrow-en { color: var(--ink-soft); font-weight: 400; }
+.tr {
+  text-decoration: underline dotted var(--teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 .section-title {
   font-family: var(--font-display);
@@ -116,16 +159,59 @@ section.alt { background: var(--mist); }
 .prose { color: var(--ink-soft); max-width: 60ch; }
 
 /* ---------- SOBRE ---------- */
+#sobre {
+  background:
+    radial-gradient(640px 420px at 90% 0%, rgba(31,158,168,0.07), transparent 70%),
+    radial-gradient(560px 400px at 0% 100%, rgba(107,78,216,0.05), transparent 70%);
+}
 .about { display: grid; gap: 2rem; }
 .about-text { min-width: 0; }
-.portrait {
+.call-frame {
   justify-self: center;
-  border-radius: 12px;
   width: 100%;
-  max-width: 260px;
+  max-width: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ink);
+  box-shadow: 0 16px 40px rgba(15,20,25,0.18);
+}
+.call-top { display: flex; align-items: center; gap: 6px; padding: 0.5rem 0.75rem; }
+.call-top i { width: 7px; height: 7px; border-radius: 50%; background: #2c3442; }
+.call-top span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  margin-left: 4px;
+}
+.portrait {
+  display: block;
+  width: 100%;
   aspect-ratio: 3/4;
   object-fit: cover;
   height: auto;
+}
+.call-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.75rem; }
+.call-dot { width: 8px; height: 8px; border-radius: 50%; background: #34c98e; flex: 0 0 auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .call-dot { animation: call-pulse 2s ease-out infinite; }
+}
+@keyframes call-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(52,201,142,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(52,201,142,0); }
+  100% { box-shadow: 0 0 0 0 rgba(52,201,142,0); }
+}
+.call-name { font-size: 0.75rem; color: #e8ecf2; white-space: nowrap; }
+.call-cap {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #b8c4dd;
+  background: rgba(255,255,255,0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
 }
 .badges-label {
   font-size: 0.75rem;
@@ -170,34 +256,130 @@ section.alt { background: var(--mist); }
   .badges-set[aria-hidden="true"] { display: none; }
 }
 .badge-item img { width: 150px; height: 150px; object-fit: contain; }
+.badges-note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 0.75rem;
+  max-width: 60ch;
+}
 
-/* ---------- LISTA "COMO FUNCIONAM" ---------- */
-.features { list-style: none; margin-top: 1.5rem; display: grid; gap: 1rem; }
+/* ---------- COMO FUNCIONAM (cards + chat) ---------- */
+#aulas {
+  background:
+    radial-gradient(620px 420px at 100% 100%, rgba(107,78,216,0.06), transparent 70%),
+    var(--mist);
+}
+.method { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 840px) {
+  .method { grid-template-columns: 1.15fr 0.85fr; }
+}
+.features { list-style: none; margin-top: 1.5rem; display: grid; gap: 0.85rem; }
+@media (min-width: 540px) {
+  .features { grid-template-columns: 1fr 1fr; }
+}
 .features li {
-  padding-left: 1.75rem;
-  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
   color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.features li::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0.55em;
-  width: 0.6rem; height: 0.6rem;
-  border-radius: 50%;
-  background: var(--teal);
+.features li:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,20,25,0.1); }
+.feature-n {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--teal-text);
+  margin-bottom: 0.4rem;
 }
+.chat { display: flex; flex-direction: column; gap: 0.7rem; max-width: 24rem; }
+.chat-bub { padding: 0.8rem 1rem; border-radius: 14px; font-size: 0.95rem; line-height: 1.5; }
+.chat-pt {
+  align-self: flex-end;
+  background: var(--violet);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.chat-en {
+  align-self: flex-start;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+}
+.chat-who {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+.chat-type { font-family: var(--font-mono); font-size: 0.8rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .chat-type {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    width: 0;
+    border-right: 2px solid var(--violet);
+  }
+  .chat.play .chat-type {
+    animation: chat-typing 2.2s steps(30) 0.4s forwards, chat-caret 0.75s step-end infinite;
+  }
+}
+@keyframes chat-typing { to { width: 30ch; } }
+@keyframes chat-caret { 50% { border-color: transparent; } }
 
-/* ---------- AGENDAMENTO ---------- */
+/* ---------- AGENDAMENTO (faixa escura + mapa de pontos) ---------- */
+#agendar {
+  position: relative;
+  background: var(--ink);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+#agendar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.13) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(80% 120% at 50% 50%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(80% 120% at 50% 50%, #000 30%, transparent 100%);
+}
+.map-arcs { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-city {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: rgba(255,255,255,0.65);
+  letter-spacing: 0.1em;
+}
+#agendar .wrap { position: relative; }
+#agendar .eyebrow { color: #2bb6c2; }
+#agendar .eyebrow-en { color: rgba(255,255,255,0.72); }
+#agendar .prose { color: rgba(255,255,255,0.85); margin-inline: auto; }
+#agendar :focus-visible { outline-color: #fff; }
 .schedule-cta { margin-top: 1.5rem; }
 .btn-schedule { background: var(--violet); color: #fff; margin-top: 1rem; }
 .btn-schedule:hover { background: var(--violet-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
 .schedule-note {
   margin-top: 0.75rem;
   font-size: 0.85rem;
-  color: var(--ink-soft);
+  color: rgba(255,255,255,0.78);
 }
 
 /* ---------- FORMULÁRIO DE CONTATO ---------- */
+#contato {
+  background:
+    radial-gradient(620px 400px at 100% 0%, rgba(107,78,216,0.05), transparent 70%),
+    var(--mist);
+}
 .contact-form { margin-top: 1.5rem; display: grid; gap: 1rem; max-width: 32rem; }
 .contact-form label { font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 0.35rem; }
 .contact-form input,
@@ -239,5 +421,5 @@ footer {
 @media (min-width: 720px) {
   .about { grid-template-columns: 1fr auto; align-items: start; }
   .about-text { grid-column: 1; grid-row: 1; }
-  .about .portrait { grid-column: 2; grid-row: 1; }
+  .about .call-frame { grid-column: 2; grid-row: 1; }
 }
