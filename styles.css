@@ -1,0 +1,177 @@
+/* ===================================================================
+   SISTEMA DE DESIGN — RBS Tech Teach
+   Paleta derivada do banner (tinta líquida: verde→azul→roxo)
+   =================================================================== */
+:root {
+  --ink:        #0f1419;   /* texto principal, quase preto azulado */
+  --ink-soft:   #3d4654;   /* texto secundário */
+  --paper:      #ffffff;   /* fundo */
+  --mist:       #f4f6f9;   /* fundo de seção alternada */
+  --teal:       #1f9ea8;   /* acento — azul-petróleo do banner */
+  --teal-text:  #147a82;   /* variante escura do teal para texto pequeno (4.5:1 em --paper e --mist) */
+  --violet:     #6b4ed8;   /* acento — roxo do banner */
+  --line:       #e2e6ec;   /* divisórias */
+
+  --grad: linear-gradient(120deg, #2f7d5a 0%, #1f9ea8 38%, #3a5bd0 68%, #7b3fd4 100%);
+
+  --font-display: Georgia, 'Times New Roman', serif;  /* CLAUDE CODE: trocar por fonte display real (ver Prompt 2) */
+  --font-body:    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --maxw: 920px;
+  --gap:  clamp(2.5rem, 6vw, 5rem);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  background: var(--grad);
+  color: #fff;
+  padding-block: clamp(3.5rem, 10vw, 7rem);
+  text-align: center;
+}
+.hero .brand {
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.12;
+  max-width: 16ch;
+  margin-inline: auto;
+}
+.hero p {
+  margin-top: 1.25rem;
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  max-width: 42ch;
+  margin-inline: auto;
+}
+
+/* ---------- BOTÕES ---------- */
+.btn {
+  display: inline-block;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.85em 1.6em;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-primary { background: #fff; color: var(--violet); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.95); }
+.btn-ghost:hover { background: rgba(255,255,255,0.12); }
+.hero .actions { margin-top: 2.25rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- SEÇÕES ---------- */
+section { padding-block: var(--gap); }
+section.alt { background: var(--mist); }
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-text);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.prose { color: var(--ink-soft); max-width: 60ch; }
+
+/* ---------- LISTA "COMO FUNCIONAM" ---------- */
+.features { list-style: none; margin-top: 1.5rem; display: grid; gap: 1rem; }
+.features li {
+  padding-left: 1.75rem;
+  position: relative;
+  color: var(--ink);
+}
+.features li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 0.6rem; height: 0.6rem;
+  border-radius: 50%;
+  background: var(--grad);
+}
+
+/* ---------- AGENDAMENTO ---------- */
+/* CLAUDE CODE (Fase 1): substituir este placeholder pelo embed real
+   da página de agendamento do Google Agenda (iframe) OU manter o
+   botão apontando para o link público. Ver Prompt 4. */
+.schedule-embed {
+  margin-top: 1.5rem;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* ---------- FORMULÁRIO DE CONTATO ---------- */
+/* CLAUDE CODE (Fase 2): conectar este form a /api/contact (Cloudflare
+   Function). Adicionar estados de loading, sucesso e erro. Ver Prompt 5. */
+.contact-form { margin-top: 1.5rem; display: grid; gap: 1rem; max-width: 32rem; }
+.contact-form label { font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 0.35rem; }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.7em 0.85em;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+.contact-form input:focus,
+.contact-form textarea:focus { outline: 2px solid var(--teal); border-color: transparent; }
+.contact-form .btn-submit { background: var(--grad); color: #fff; justify-self: start; }
+
+/* ---------- RODAPÉ ---------- */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.8);
+  padding-block: 2.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.footer-link { color: #fff; }
+
+/* ---------- ACESSIBILIDADE ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.hero :focus-visible { outline-color: #fff; }
+
+/* ---------- BREAKPOINT RESERVADO ---------- */
+/* CLAUDE CODE (Fase 1): layout lado-a-lado do #sobre (texto + foto do
+   professor) entra aqui. Não construir antes de a foto existir. */
+@media (min-width: 720px) {
+}
