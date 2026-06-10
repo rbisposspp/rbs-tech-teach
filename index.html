@@ -10,7 +10,9 @@
   <meta property="og:title" content="RBS Tech Teach — Aulas de inglês online">
   <meta property="og:description" content="Aulas individuais, 100% online, sob medida para o seu objetivo.">
   <meta property="og:type" content="website">
-  <!-- CLAUDE CODE (Fase 1): adicionar og:image com a URL absoluta do banner após o deploy -->
+  <meta property="og:image" content="https://rbs.eng.br/assets/banner.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%236b4ed8'/><text x='32' y='45' font-family='sans-serif' font-size='38' font-weight='700' text-anchor='middle' fill='white'>R</text></svg>">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
@@ -170,9 +172,10 @@
   <footer>
     <div class="wrap">
       <p>RBS Tech Teach · Aulas de inglês online</p>
-      <!-- CLAUDE CODE: adicionar link de e-mail, WhatsApp e ano dinâmico -->
+      <p><a class="footer-link" href="mailto:rbs@rbs.eng.br">rbs@rbs.eng.br</a> · © <span id="year"></span></p>
     </div>
   </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
 
   <script>
     const form = document.querySelector('.contact-form');
