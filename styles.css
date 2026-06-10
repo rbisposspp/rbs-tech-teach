@@ -42,7 +42,7 @@ body {
 
 /* ---------- HERO ---------- */
 .hero {
-  background: linear-gradient(rgba(15,20,25,0.45), rgba(15,20,25,0.45)), url('assets/banner.png') center/cover no-repeat;
+  background: linear-gradient(rgba(15,20,25,0.45), rgba(15,20,25,0.45)), url('assets/banner.jpg') center/cover no-repeat;
   color: #fff;
   padding-block: clamp(3.5rem, 10vw, 7rem);
   text-align: center;
