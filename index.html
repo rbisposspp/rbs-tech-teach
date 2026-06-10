@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RBS Tech Teach — Aulas de inglês online, individuais e sob medida</title>
+  <meta name="description" content="Aulas de inglês individuais e 100% online para adultos, com conteúdo personalizado e materiais interativos. Agende uma aula experimental.">
+
+  <!-- Open Graph: como o link aparece quando compartilhado (WhatsApp, redes) -->
+  <meta property="og:title" content="RBS Tech Teach — Aulas de inglês online">
+  <meta property="og:description" content="Aulas individuais, 100% online, sob medida para o seu objetivo.">
+  <meta property="og:type" content="website">
+  <!-- CLAUDE CODE (Fase 1): adicionar og:image com a URL absoluta do banner após o deploy -->
+
+  <style>
+    /* ===================================================================
+       SISTEMA DE DESIGN — RBS Tech Teach
+       Paleta derivada do banner (tinta líquida: verde→azul→roxo)
+       =================================================================== */
+    :root {
+      --ink:        #0f1419;   /* texto principal, quase preto azulado */
+      --ink-soft:   #3d4654;   /* texto secundário */
+      --paper:      #ffffff;   /* fundo */
+      --mist:       #f4f6f9;   /* fundo de seção alternada */
+      --teal:       #1f9ea8;   /* acento — azul-petróleo do banner */
+      --violet:     #6b4ed8;   /* acento — roxo do banner */
+      --line:       #e2e6ec;   /* divisórias */
+
+      --grad: linear-gradient(120deg, #2f7d5a 0%, #1f9ea8 38%, #3a5bd0 68%, #7b3fd4 100%);
+
+      --font-display: Georgia, 'Times New Roman', serif;  /* CLAUDE CODE: trocar por fonte display real (ver Prompt 2) */
+      --font-body:    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+      --maxw: 920px;
+      --gap:  clamp(2.5rem, 6vw, 5rem);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 2rem);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      background: var(--grad);
+      color: #fff;
+      padding-block: clamp(3.5rem, 10vw, 7rem);
+      text-align: center;
+    }
+    .hero .brand {
+      font-size: 0.95rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      line-height: 1.12;
+      max-width: 16ch;
+      margin-inline: auto;
+    }
+    .hero p {
+      margin-top: 1.25rem;
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+      opacity: 0.92;
+      max-width: 42ch;
+      margin-inline: auto;
+    }
+
+    /* ---------- BOTÕES ---------- */
+    .btn {
+      display: inline-block;
+      font: inherit;
+      font-weight: 600;
+      padding: 0.85em 1.6em;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-primary { background: #fff; color: var(--violet); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+    .hero .actions { margin-top: 2.25rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ---------- SEÇÕES ---------- */
+    section { padding-block: var(--gap); }
+    section.alt { background: var(--mist); }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    section p { color: var(--ink-soft); max-width: 60ch; }
+
+    /* ---------- LISTA "COMO FUNCIONAM" ---------- */
+    .features { list-style: none; margin-top: 1.5rem; display: grid; gap: 1rem; }
+    .features li {
+      padding-left: 1.75rem;
+      position: relative;
+      color: var(--ink);
+    }
+    .features li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0.55em;
+      width: 0.6rem; height: 0.6rem;
+      border-radius: 50%;
+      background: var(--grad);
+    }
+
+    /* ---------- AGENDAMENTO ---------- */
+    /* CLAUDE CODE (Fase 1): substituir este placeholder pelo embed real
+       da página de agendamento do Google Agenda (iframe) OU manter o
+       botão apontando para o link público. Ver Prompt 4. */
+    .schedule-embed {
+      margin-top: 1.5rem;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- FORMULÁRIO DE CONTATO ---------- */
+    /* CLAUDE CODE (Fase 2): conectar este form a /api/contact (Cloudflare
+       Function). Adicionar estados de loading, sucesso e erro. Ver Prompt 5. */
+    .contact-form { margin-top: 1.5rem; display: grid; gap: 1rem; max-width: 32rem; }
+    .contact-form label { font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 0.35rem; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      font: inherit;
+      padding: 0.7em 0.85em;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { outline: 2px solid var(--teal); border-color: transparent; }
+    .contact-form .btn-submit { background: var(--grad); color: #fff; justify-self: start; }
+
+    /* ---------- RODAPÉ ---------- */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.8);
+      padding-block: 2.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer a { color: #fff; }
+
+    /* ---------- ACESSIBILIDADE ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+    :focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <p class="brand">RBS Tech Teach</p>
+      <h1>Aulas de inglês online, individuais e sob medida</h1>
+      <p>Aprenda no seu ritmo, sem sair de casa — com aulas planejadas para o seu objetivo.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#agendar">Agendar aula experimental</a>
+        <a class="btn btn-ghost" href="#contato">Falar com o professor</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre">
+    <div class="wrap">
+      <p class="eyebrow">Sobre o professor</p>
+      <h2>Quem vai te ensinar</h2>
+      <p>
+        Sou Rodrigo, professor de inglês com aulas individuais e online para adultos.
+        Cada aula é planejada para o seu objetivo — trabalho, viagens ou conversação —
+        com materiais interativos criados especialmente para você.
+      </p>
+      <!-- CLAUDE CODE (Fase 1): adicionar foto do professor aqui, com layout
+           lado-a-lado (texto + imagem) no desktop e empilhado no mobile. -->
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONAM AS AULAS ============ -->
+  <section id="aulas" class="alt">
+    <div class="wrap">
+      <p class="eyebrow">Como funcionam</p>
+      <h2>Aulas pensadas para você</h2>
+      <ul class="features">
+        <li>Aulas individuais, 100% online, via Zoom.</li>
+        <li>Conteúdo personalizado para o seu nível e objetivo.</li>
+        <li>Materiais interativos e atividades práticas em cada aula.</li>
+        <li>Horários flexíveis, combinados diretamente com o professor.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ AGENDAMENTO ============ -->
+  <section id="agendar">
+    <div class="wrap">
+      <p class="eyebrow">Agende</p>
+      <h2>Reserve sua aula experimental</h2>
+      <p>Escolha um horário livre na agenda. A reserva é confirmada na hora.</p>
+      <div class="schedule-embed">
+        <!-- PLACEHOLDER — Claude Code substitui pelo embed/botão do Google Agenda -->
+        <p>📅 Página de agendamento do Google Agenda entra aqui.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section id="contato" class="alt">
+    <div class="wrap">
+      <p class="eyebrow">Contato</p>
+      <h2>Quer tirar uma dúvida antes?</h2>
+      <p>Me mande uma mensagem e eu respondo pelo e-mail que você informar.</p>
+
+      <!-- PLACEHOLDER — Claude Code conecta a /api/contact na Fase 2.
+           Sem <form> action por enquanto; será controlado por JS. -->
+      <div class="contact-form">
+        <div>
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name">
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+        </div>
+        <div>
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+        </div>
+        <button type="button" class="btn btn-submit">Enviar mensagem</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer>
+    <div class="wrap">
+      <p>RBS Tech Teach · Aulas de inglês online</p>
+      <!-- CLAUDE CODE: adicionar link de e-mail, WhatsApp e ano dinâmico -->
+    </div>
+  </footer>
+
+</body>
+</html>
