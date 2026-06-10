@@ -158,15 +158,12 @@ section.alt { background: var(--mist); }
 }
 
 /* ---------- AGENDAMENTO ---------- */
-/* CLAUDE CODE (Fase 1): substituir este placeholder pelo embed real
-   da página de agendamento do Google Agenda (iframe) OU manter o
-   botão apontando para o link público. Ver Prompt 4. */
-.schedule-embed {
-  margin-top: 1.5rem;
-  border: 1px dashed var(--line);
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
+.schedule-cta { margin-top: 1.5rem; }
+.btn-schedule { background: var(--grad); color: #fff; margin-top: 1rem; }
+.btn-schedule:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.schedule-note {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
   color: var(--ink-soft);
 }
 
