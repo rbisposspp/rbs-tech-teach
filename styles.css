@@ -42,7 +42,7 @@ body {
 
 /* ---------- HERO ---------- */
 .hero {
-  background: var(--grad);
+  background: linear-gradient(rgba(15,20,25,0.45), rgba(15,20,25,0.45)), url('assets/banner.png') center/cover no-repeat;
   color: #fff;
   padding-block: clamp(3.5rem, 10vw, 7rem);
   text-align: center;
@@ -106,6 +106,40 @@ section.alt { background: var(--mist); }
   margin-bottom: 1rem;
 }
 .prose { color: var(--ink-soft); max-width: 60ch; }
+
+/* ---------- SOBRE ---------- */
+.about { display: grid; gap: 2rem; justify-items: start; }
+.portrait {
+  border-radius: 12px;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  height: auto;
+}
+.badges-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.badges {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-block: 0.5rem;
+}
+.badge-item {
+  scroll-snap-align: start;
+  flex: 0 0 120px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+.badge-item img { width: 120px; height: 120px; object-fit: contain; }
 
 /* ---------- LISTA "COMO FUNCIONAM" ---------- */
 .features { list-style: none; margin-top: 1.5rem; display: grid; gap: 1rem; }
@@ -171,8 +205,10 @@ footer {
 :focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
 .hero :focus-visible { outline-color: #fff; }
 
-/* ---------- BREAKPOINT RESERVADO ---------- */
-/* CLAUDE CODE (Fase 1): layout lado-a-lado do #sobre (texto + foto do
-   professor) entra aqui. Não construir antes de a foto existir. */
+/* ---------- DESKTOP (#sobre lado-a-lado, badges em grade) ---------- */
 @media (min-width: 720px) {
+  .about { grid-template-columns: 1fr auto; align-items: start; }
+  .about-text { grid-column: 1; grid-row: 1; }
+  .about .portrait { grid-column: 2; grid-row: 1; }
+  .badges { flex-wrap: wrap; overflow-x: visible; }
 }
